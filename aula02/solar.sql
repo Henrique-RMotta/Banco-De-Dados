@@ -82,4 +82,16 @@ alter table fornecedor modify column estado char(2) default 'MG';
 
 -- adicionar chave primaria
 alter table empregado add primary key (CIC_funcionario);
+-- alterar chave primaria
+alter table empregado modify CIC_funcionario int not null;
+alter table empregado drop primary key;
+
+alter table empregado add primary key (id_funcionario,CIC_funcionario);
+
+create table tipo_produtos (
+cod_tipo_produto int auto_increment primary key not null,
+tipo_produto varchar(255) not null,
+index (cod_tipo_produto)
+);
+
 
