@@ -85,7 +85,8 @@ DROP TABLE instituicao;
 alter table Projeto add Ccod int not null;
 alter table Projeto add foreign key (Ccod) references cidade(Ccod);
 
-alter table fornecedor add index (Fcodigo);
-alter table Cidade add index(Ccod);
-alter table Projeto add index(PRcod);
-alter table peca add index (Pcodigo);
+-- criando index
+create index idx_fornecedor on fornecedor(Fnome);
+create index idx_Cidade on Cidade(Cnome);
+create index idx_projeto on projeto(PRnome);
+create index idx_peca on peca(Pnome);
