@@ -638,8 +638,10 @@ INSERT INTO venda VALUES (
   '550'
 );
 
-SELECT VENDA.DUPLIC, CLIENTE.NOME, CLIENTE.CIDADE as pctec
-FROM CLIENTE INNER JOIN VENDA 
-ON CLIENTE.CODCLI = VENDA.CODCLI
-order by cliente.nome ;
+select cliente.nome, venda.duplic, venda.valor
+from cliente inner join venda on cliente.codcli = venda.codcli
+where cliente.nome like "%PCTEC%";
+
+ 
+
 
