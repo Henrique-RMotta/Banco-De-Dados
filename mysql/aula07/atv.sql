@@ -638,10 +638,42 @@ INSERT INTO venda VALUES (
   '550'
 );
 
+-- EX1
 select cliente.nome, venda.duplic, venda.valor
 from cliente inner join venda on cliente.codcli = venda.codcli
 where cliente.nome like "%PCTEC%";
 
+-- EX2
+ select cliente.nome , venda.vencto
+ from cliente inner join venda on cliente.codcli = venda.codcli
+ where year(venda.vencto)= 2004 and month(venda.vencto) = 11;
  
+ -- EX3
+select cliente.nome ,venda.duplic, venda.vencto as vencimento
+ from cliente inner join venda on cliente.codcli = venda.codcli
+ where month(venda.vencto) = 10;
+ 
+ -- EX4
+select cliente.nome, count(*) as qtde , sum(venda.valor)
+from cliente inner join venda
+on cliente.codcli = venda.codcli 
+group by cliente.nome;
 
+-- EX5
+select cliente.nome, count(*) as qtde , sum(venda.valor) as total
+from cliente inner join venda
+on cliente.codcli = venda.codcli 
+group by cliente.nome;
 
+-- EX6
+select cliente.nome as Cliente, count(*) as Vencidos
+from cliente inner join venda
+on cliente.codcli = venda.codcli
+where year(venda.vencto) < 2003 and month(venda.vencto) < 12 and dayofmonth(venda.vencto) < 31
+group by cliente.nome;
+
+-- EX7
+select cliente.nome as Cliente, venda.valor as Valor_Duplicata, 10 as juros, venda.valor * (1+0.1) as Valor_Total 
+from cliente inner join venda 
+on cliente.codcli = venda.codcli
+where venda.vencto < '1999-12-31';
