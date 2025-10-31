@@ -1,0 +1,11 @@
+Desafios - Código
+1-Show Tables; 
+2-Describe DUCKS;
+3-Select * from ducks;
+4-Select * from ducks where ducks.age <= 2;
+5-select * from ducks order by ducks.age;
+6-select * from ducks order by ducks.age limit 3;
+7-select ducks.name, ducks.age * 12 from ducks;
+8-select ducks.species from ducks group by ducks.species;
+9-select * from (select* from duck_surveys) using sample 10 rows;
+10-select count(*),avg(ducks.age),min(ducks.age),max(ducks.age), from ducks; 
