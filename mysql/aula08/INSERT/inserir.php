@@ -8,7 +8,7 @@ if ($conn->connect_error){
     die("Erro de conexão". $conn->connect_error);
 }
 
-$sql = "INSERT INTO usuarios (nome,email) values (´$nome´,´$email´)";
+$sql = "INSERT INTO usuarios (nome,email) values ('$nome','$email')";
 if($conn->query($sql) === TRUE){
     echo "Dados salvos com sucesso";
 } else {
@@ -17,5 +17,5 @@ if($conn->query($sql) === TRUE){
 
 // header("Location: index.html"); ou index.php, dependendo do seu arquivo principal
 //exit;
-//$conn ->close();
+$conn ->close();
 ?>
