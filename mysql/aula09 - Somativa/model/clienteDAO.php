@@ -2,7 +2,7 @@
 class ClienteDAO {
     private $conn;
      public function __construct(){
-         $this->conn = new mysqli("localhost","root","7900","OficinaMecanicaSomativa");
+         $this->conn = new mysqli("localhost","root","senaisp","OficinaMecanicaSomativa");
      }
     public function criar($nome,$celular,$CPF,$CEP,$DATANASC) {
         try {
@@ -40,7 +40,7 @@ class ClienteDAO {
                     </form>
                 </td>
                 <td> 
-                    <a href='atualizarCliente.php?cli_id={$row['CLI_ID']}&cli_nome={$row['CLI_NOME']}&cli_celular={$row['CLI_CELULAR']}&cli_cpf={$row['CLI_CPF']}&cli_cep={$row['CLI_CEP']}&cli_datanasc={$row['CLI_DATANASC']}'>Atualizar</a>
+                    <a href='atualizarCliente.php?cli_id={$row['CLI_ID']}&cli_nome={$row['CLI_NOME']}&cli_celular={$row['CLI_CELULAR']}&cli_cpf={$row['CLI_CPF']}&cli_cep={$row['CLI_CEP']}&cli_datanasc={$row['CLI_DATANASC']}'><button type='button'>Atualizar</button></a>
                 </tr>
                 ";
             }       
