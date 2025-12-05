@@ -9,8 +9,8 @@ class ServicoController {
         $this->dao = new ServicoDAO();
     }
 
-    public function criar($nome, $detalhes, $data_inicio, $data_fim, $status, $valor, $PE_ID, $VEI_ID, $MEC_ID) {
-        $this->dao->criar($nome, $detalhes, $data_inicio, $data_fim, $status, $valor, $PE_ID, $VEI_ID, $MEC_ID);
+    public function criar($nome, $detalhes, $data_inicio, $data_fim, $status, $valor, $PE_ID, $VEI_ID, $MEC_ID,$CLI_ID) {
+        $this->dao->criar($nome, $detalhes, $data_inicio, $data_fim, $status, $valor, $PE_ID, $VEI_ID, $MEC_ID,$CLI_ID);
     }
 
     public function listar() {
@@ -21,8 +21,8 @@ class ServicoController {
         $this->dao->deletar($id);
     }
 
-    public function atualizar($ID, $novonome, $detalhes, $data_inicio, $data_fim, $status, $valor, $PE_ID, $VEI_ID, $MEC_ID) {
-        $this->dao->atualizar($ID, $novonome, $detalhes, $data_inicio, $data_fim, $status, $valor, $PE_ID, $VEI_ID, $MEC_ID);
+    public function atualizar($ID, $novonome, $detalhes, $data_inicio, $data_fim, $status, $valor, $PE_ID, $VEI_ID, $MEC_ID,$CLI_ID) {
+        $this->dao->atualizar($ID, $novonome, $detalhes, $data_inicio, $data_fim, $status, $valor, $PE_ID, $VEI_ID, $MEC_ID,$CLI_ID);
     }
 
     public function buscarVeiculosID() {
@@ -35,6 +35,10 @@ class ServicoController {
 
     public function buscarPecasID() {
         $this->dao->buscarPecasID();
+    }
+
+    public function buscarClientesID() {
+        $this->dao->buscarClientesID();
     }
 }
 

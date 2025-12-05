@@ -5,7 +5,7 @@ class ServicoDAO {
          $this->conn = new mysqli("localhost","root","senaisp","OficinaMecanicaSomativa");
      }
 
-    public function criar($nome, $detalhes, $data_inicio, $data_fim, $status, $valor, $PE_ID, $VEI_ID, $MEC_ID)
+    public function criar($nome, $detalhes, $data_inicio, $data_fim, $status, $valor, $PE_ID, $VEI_ID, $MEC_ID,$CLI_ID)
     {
         try {
             $nome = $this->conn->real_escape_string($nome);
@@ -13,7 +13,6 @@ class ServicoDAO {
             $data_inicio = $this->conn->real_escape_string($data_inicio);
             $data_fim = $this->conn->real_escape_string($data_fim);
             $status = $this->conn->real_escape_string($status);
-
             // tratar PE_ID vindo do form: '' ou 'NULL' -> SQL NULL, caso contrário inteiro
             if ($PE_ID === '' || $PE_ID === null || strtoupper($PE_ID) === 'NULL') {
                 $peIdPart = "NULL";
@@ -21,10 +20,10 @@ class ServicoDAO {
                 $peIdPart = intval($PE_ID);
             }
 
-            // garantir inteiros para VEI_ID e MEC_ID
-            $veiIdPart = intval($VEI_ID);
+            // garantir inteiros para VEI_ID ,MEC_ID  e CLI_ID
+            $veiIdPart = intval($VEI_ID); 
             $mecIdPart = intval($MEC_ID);
-
+            $cliIdPart = intval($CLI_ID);
             // tratar valor (NULL ou número)
             if ($valor === '' || $valor === null) {
                 $valorPart = "NULL";
@@ -34,9 +33,9 @@ class ServicoDAO {
             }
 
             $sql = "INSERT INTO SERVICO 
-                (SE_NOME, SE_DETALHES, SE_DATA_INICIO, SE_DATA_FIM, SE_STATUS, SE_VALOR, PE_ID, VEI_ID, MEC_ID)
+                (SE_NOME, SE_DETALHES, SE_DATA_INICIO, SE_DATA_FIM, SE_STATUS, SE_VALOR, PE_ID, VEI_ID, MEC_ID,CLI_ID)
                 VALUES
-                ('$nome','$detalhes','$data_inicio','$data_fim','$status', $valorPart, $peIdPart, $veiIdPart, $mecIdPart)";
+                ('$nome','$detalhes','$data_inicio','$data_fim','$status', $valorPart, $peIdPart, $veiIdPart, $mecIdPart,$cliIdPart)";
 
             $this->conn->query($sql);
         } catch (Exception $e) {
@@ -96,7 +95,7 @@ class ServicoDAO {
         echo "</table>";
     }
 
-    public function atualizar($ID, $novonome, $detalhes, $data_inicio, $data_fim, $status,$valor,$PE_ID,$VEI_ID,$MEC_ID)
+    public function atualizar($ID, $novonome, $detalhes, $data_inicio, $data_fim, $status,$valor,$PE_ID,$VEI_ID,$MEC_ID,$CLI_ID)
     {
         // sanitização básica
         $ID = intval($ID);
@@ -116,7 +115,7 @@ class ServicoDAO {
         // garantir inteiros para VEI_ID e MEC_ID
         $veiIdPart = intval($VEI_ID);
         $mecIdPart = intval($MEC_ID);
-
+        $cliIdPart = intval($CLI_ID);
         // tratar valor (NULL ou número)
         if ($valor === '' || $valor === null) {
             $valorPart = "NULL";
@@ -134,7 +133,8 @@ class ServicoDAO {
                     SE_VALOR = $valorPart,
                     PE_ID = $peIdPart,
                     VEI_ID = $veiIdPart,
-                    MEC_ID = $mecIdPart
+                    MEC_ID = $mecIdPart,
+                    CLI_ID = $cliIdPart
                 WHERE SE_ID = '$ID'";
 
         $this->conn->query($sql);
@@ -158,6 +158,14 @@ class ServicoDAO {
         
         while ($row = $result->fetch_assoc()){
             echo "<option value='{$row['MEC_ID']}'>{$row['MEC_NOME']}</option>";
+        }
+    }   
+
+      public function buscarClientesID() {
+        $result = $this->conn->query("SELECT CLI_ID, CLI_NOME FROM CLIENTE ORDER BY CLI_NOME");
+        
+        while ($row = $result->fetch_assoc()){
+            echo "<option value='{$row['CLI_ID']}'>{$row['CLI_NOME']}</option>";
         }
     }
 

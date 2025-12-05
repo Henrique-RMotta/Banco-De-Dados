@@ -11,7 +11,6 @@ $se_valor = $_GET['se_valor'];
 $pe_nome = $_GET['pe_nome'];
 $vei_modelo = $_GET['vei_modelo'];
 $mec_nome = $_GET['mec_nome'];
-
 $controller = new ServicoController();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -27,7 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
             $_POST['valor_novo'],
             $_POST['pe_id_novo'],
             $_POST['vei_id_novo'],
-            $_POST['mec_id_novo']
+            $_POST['mec_id_novo'],
+            $_POST['cli_id_novo'],
         );
         header("Location: servico.php");
         exit();
@@ -77,7 +77,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
             <option value="">Selecione um mecânico</option>
             <?php $controller->buscarMecanicosID(); ?>
         </select>
-        
+              Cliente:
+        <select name="cli_id_novo" required>
+            <option value="">Selecione um Cliente</option>
+            <?php 
+                $controller->buscarClientesID();
+            ?>
+        </select>
         <button type="submit">Atualizar</button>
         <a href="servico.php"><button type="button">Voltar</button></a>
     </form>

@@ -13,7 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $_POST['valor'],
           $_POST['pe_id'],
           $_POST['vei_id'],
-          $_POST['mec_id']
+          $_POST['mec_id'],
+          $_POST['cli_id']
         );
     } elseif ($acao === 'deletar') {
         $controller->deletar($_POST['id']);
@@ -58,6 +59,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <option value="">Selecione um mecânico</option>
             <?php 
                 $controller->buscarMecanicosID();
+            ?>
+        </select>
+          Cliente:
+        <select name="cli_id" required>
+            <option value="">Selecione um Cliente</option>
+            <?php 
+                $controller->buscarClientesID();
             ?>
         </select>
         <button type='submit'>Criar</button>

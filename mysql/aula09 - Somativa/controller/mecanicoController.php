@@ -9,8 +9,8 @@ class MecanicoController {
        
     }
 
-    public function criar($nome,$cpf,$celular,$cep,$datanasc) {
-        $this->dao->criar($nome,$cpf,$celular,$cep,$datanasc);
+    public function criar($nome,$cpf,$celular,$cep,$datanasc,$mec_especialidade) {
+        $this->dao->criar($nome,$cpf,$celular,$cep,$datanasc,$mec_especialidade);
     }
 
     public function listar(){
@@ -21,8 +21,8 @@ class MecanicoController {
         $this->dao->deletar($id);
     }
 
-    public function atualizar($ID,$nomenovo,$cpfnovo,$celularnovo,$cepnovo,$datanascnova) {
-        $this->dao->atualizar($ID,$nomenovo,$cpfnovo,$celularnovo,$cepnovo,$datanascnova);
+    public function atualizar($ID,$nomenovo,$cpfnovo,$celularnovo,$cepnovo,$datanascnova,$mec_especialidade) {
+        $this->dao->atualizar($ID,$nomenovo,$cpfnovo,$celularnovo,$cepnovo,$datanascnova,$mec_especialidade);
     }
   }
 

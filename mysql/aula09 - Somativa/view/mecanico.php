@@ -9,7 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $_POST['CPF'],
           $_POST['celular'],
           $_POST['CEP'],
-          $_POST['DATA_NASC']
+          $_POST['DATA_NASC'],
+          $_POST['MEC_ESPECIALIDADE']
         );
     } elseif ($acao === 'deletar') {
         $controller->deletar($_POST['id']);
@@ -28,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         celular: <input type="number" name='celular' placeholder="Digite número de celular sem traços" required>
         CEP:  <input type="number" name='CEP' placeholder="Digite o CEP sem pontos e traços" required>
         DATA NASCIMENTO: <input type="text" name='DATA_NASC' placeholder="Digite a data de nascimento com traços" required>
+        especialidade: <input type="text" name='MEC_ESPECIALIDADE' placeholder="Digite a Especialidade do Mecanico" required>
         <button type='submit'>Criar</button>
     </form>
     <?php 
